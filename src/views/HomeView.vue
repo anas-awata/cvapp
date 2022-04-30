@@ -1,6 +1,7 @@
 <template>
-  <div class="home"></div>
-  <pdf></pdf>
+  <div class="home">
+    <pdf></pdf>
+  </div>
 </template>
 
 <script>
@@ -11,3 +12,4 @@ export default {
   components: { pdf },
 };
 </script>
+<style lang="scss" scoped></style>

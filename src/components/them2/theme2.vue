@@ -1,123 +1,41 @@
 <template>
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1"
-  />
   <div class="resume-wrapper">
     <section class="profile section-padding">
       <div class="container">
-        <mydescription />
-        <div class="contact-social clearfix">
-          <ul class="list-titles">
-            <li>Twitter</li>
-            <li>Dribbble</li>
-            <li>Codepen</li>
-          </ul>
-          <ul class="list-content">
-            <!-- REMEMBER TO PUT THE URL ON THE HREF TAG  -->
-            <li><a href="">@janderson</a></li>
-            <!-- YOUR TWITTER USER  -->
-            <li><a href="">janderson</a></li>
-            <!-- YOUR DRIBBBLE USER  -->
-            <li><a href="">janderson</a></li>
-            <!-- YOUR BEHANCE USER  -->
-          </ul>
-        </div>
+        <personal-Info />
+        <social-info />
       </div>
     </section>
 
     <section class="experience section-padding">
-      <div class="container">
-        <h3 class="experience-title">Experience</h3>
+      <work-info />
+      <!--Skill experience-->
 
-        <div class="experience-wrapper">
-          <div class="company-wrapper clearfix">
-            <div class="experience-title">Company name</div>
-            <!-- NAME OF THE COMPANY YOUWORK WITH  -->
-            <div class="time">Nov 2012 - Present</div>
-            <!-- THE TIME YOU WORK WITH THE COMPANY  -->
-          </div>
+      <div class="section-wrapper clearfix">
+        <h3 class="section-title">Skills</h3>
+        <!-- YOUR SET OF SKILLS  -->
+        <ul>
+          <li class="skill-percentage">HTML / HTML5</li>
+          <li class="skill-percentage">CSS / CSS3 / SASS / LESS</li>
+          <li class="skill-percentage">Javascript</li>
+          <li class="skill-percentage">Jquery</li>
+          <li class="skill-percentage">Wordpress</li>
+          <li class="skill-percentage">Photoshop</li>
+        </ul>
+      </div>
 
-          <div class="job-wrapper clearfix">
-            <div class="experience-title">Front End Developer</div>
-            <!-- JOB TITLE  -->
-            <div class="company-description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a
-                elit facilisis, adipiscing leo in, dignissim magna.
-              </p>
-              <!-- JOB DESCRIPTION  -->
-            </div>
-          </div>
+      <div class="section-wrapper clearfix">
+        <h3 class="section-title">Hobbies</h3>
+        <!-- DESCRIPTION OF YOUR HOBBIES -->
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit
+          facilisis, adipiscing leo in, dignissim magna.
+        </p>
 
-          <div class="company-wrapper clearfix">
-            <div class="experience-title">Company name</div>
-            <!-- NAME OF THE COMPANY YOUWORK WITH  -->
-            <div class="time">Nov 2010 - Present</div>
-            <!-- THE TIME YOU WORK WITH THE COMPANY  -->
-          </div>
-
-          <div class="job-wrapper clearfix">
-            <div class="experience-title">
-              Freelance, Web Designer / Web Developer
-            </div>
-            <!-- JOB TITLE  -->
-            <div class="company-description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a
-                elit facilisis, adipiscing leo in, dignissim magna.
-              </p>
-              <!-- JOB DESCRIPTION  -->
-            </div>
-          </div>
-
-          <div class="company-wrapper clearfix">
-            <div class="experience-title">Company name</div>
-            <!-- NAME OF THE COMPANY YOUWORK WITH  -->
-            <div class="time">Nov 2009 - Nov 2010</div>
-            <!-- THE TIME YOU WORK WITH THE COMPANY  -->
-          </div>
-
-          <div class="job-wrapper clearfix">
-            <div class="experience-title">Web Designer</div>
-            <!-- JOB TITLE  -->
-            <div class="company-description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a
-                elit facilisis, adipiscing leo in, dignissim magna.
-              </p>
-              <!-- JOB DESCRIPTION  -->
-            </div>
-          </div>
-        </div>
-        <!--Skill experience-->
-
-        <div class="section-wrapper clearfix">
-          <h3 class="section-title">Skills</h3>
-          <!-- YOUR SET OF SKILLS  -->
-          <ul>
-            <li class="skill-percentage">HTML / HTML5</li>
-            <li class="skill-percentage">CSS / CSS3 / SASS / LESS</li>
-            <li class="skill-percentage">Javascript</li>
-            <li class="skill-percentage">Jquery</li>
-            <li class="skill-percentage">Wordpress</li>
-            <li class="skill-percentage">Photoshop</li>
-          </ul>
-        </div>
-
-        <div class="section-wrapper clearfix">
-          <h3 class="section-title">Hobbies</h3>
-          <!-- DESCRIPTION OF YOUR HOBBIES -->
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a
-            elit facilisis, adipiscing leo in, dignissim magna.
-          </p>
-
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a
-            elit facilisis, adipiscing leo in, dignissim magna.
-          </p>
-        </div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit
+          facilisis, adipiscing leo in, dignissim magna.
+        </p>
       </div>
     </section>
 
@@ -126,10 +44,13 @@
 </template>
 
 <script>
-import mydescription from "./them2Components/Desecription.vue";
+import personalInfo from "./them2Components/personalInfo.vue";
+import socialInfo from "./them2Components/socialInfo.vue";
+import workInfo from "./them2Components/workInfo.vue";
 export default {
   name: "them-2",
-  components: { mydescription },
+  components: { personalInfo, socialInfo, workInfo },
+  methods: {},
 };
 </script>
 
@@ -244,6 +165,9 @@ a {
   .contact-info {
     margin-top: 100px;
     font-weight: 300;
+    width: 100%;
+    display: flex;
+    margin-left: -15px;
     @include breakpoint(mama-bear) {
       margin-top: 70px;
     }

@@ -3,25 +3,30 @@
   <div class="row">
     <div class="cvinput col-md-6">
       <selector @keyup="print" />
-      <button @click="DownloadPdf">Download PDF</button>
+      <work-selector @keyup="print" />
     </div>
     <div ref="printMe" id="content">
       <theme-2 />
       <!-- SOURCE -->
     </div>
     <!-- OUTPUT -->
-    <div class="col-md-6">
+    <div class="col-md-6 pdf-section">
       <img id="content-image" :src="output" />
+      <button @click="DownloadPdf" class="btn btn-success">
+        Download PDF <i class="fa-solid fa-download"> </i>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import { jsPDF } from "jspdf";
+import * as html2canvas from "html2canvas";
 import $ from "jquery";
 //import mycontent from "./content.vue";
 import theme2 from "./them2/theme2.vue";
 import selector from "./selector.vue";
+import workSelector from "./them2/them2Components/workSelector.vue";
 export default {
   name: "my-pdf",
   data() {
@@ -41,11 +46,23 @@ export default {
       // if not provided the promise will return
       // the canvas.
 
-      this.output = await this.$html2canvas(this.el, {
+      /* this.output = await this.$html2canvas(this.el, {
         type: "dataURL",
+        useCORS: true,
         onclone: function (cl) {
           $(cl).find("#content").css("display", "block");
         },
+      });*/
+      html2canvas(this.el, {
+        onclone: function (cl) {
+          $(cl).find("#content").css("display", "block");
+        },
+      }).then((canvas) => {
+        canvas.mozImageSmoothingEnabled = false;
+        canvas.webkitImageSmoothingEnabled = false;
+        canvas.msImageSmoothingEnabled = false;
+        canvas.ImageSmoothingEnabled = false;
+        this.output = canvas.toDataURL("image/png", 1);
       });
     },
     DownloadPdf() {
@@ -103,11 +120,14 @@ export default {
     this.print();
   },
   computed: {},
-  components: { theme2, selector },
+  components: { theme2, selector, workSelector },
 };
 </script>
 
 <style lang="scss" scoped>
+.row {
+  height: 100%;
+}
 #frame {
   position: absolute;
   width: 50%;
@@ -122,7 +142,19 @@ export default {
   display: none;
 }
 #content-image {
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
+}
+.btn {
+  margin-top: 20px;
+}
+.cvinput {
+  background-color: #fff;
+}
+.pdf-section {
+  position: fixed;
+  right: 0;
+  height: 100%;
+  background-color: #eee;
 }
 </style>

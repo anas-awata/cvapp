@@ -1,7 +1,15 @@
 <template>
-  <nav><router-link to="/">Home</router-link> |</nav>
-  <router-view />
+  <pdf></pdf>
 </template>
+
+<script>
+import pdf from "./components/pdf.vue";
+export default {
+  components: {
+    pdf,
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -10,6 +18,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #eee;
 }
 
 nav {
