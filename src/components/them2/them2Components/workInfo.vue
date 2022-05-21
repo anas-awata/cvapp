@@ -11,7 +11,7 @@
       </div>
 
       <div class="job-wrapper clearfix">
-        <div class="experience-title">{{ Jobtitle }}</div>
+        <div class="experience-title">{{ Jobtitle[0] }}</div>
         <!-- JOB TITLE  -->
         <div class="company-description">
           <p>
@@ -70,7 +70,7 @@ export default {
   name: "work-info",
   data() {
     return {
-      Jobtitle: "",
+      Jobtitle: [],
       Company: "",
       Location: "",
       From: "",
@@ -78,22 +78,28 @@ export default {
     };
   },
   mounted() {
-    this.emitter.on("toggle-thework", ({ J, C, L, F, T }) => {
-      (this.Jobtitle = J),
-        (this.Company = C),
-        (this.Location = L),
-        (this.From = F),
-        (this.To = T);
-    });
+    for (let index = 0; index < 2; index++) {
+      this.emitter.on("toggle-thework", ({ J, C, L, F, T }) => {
+        (this.Jobtitle[index] = J),
+          (this.Company = C),
+          (this.Location = L),
+          (this.From = F),
+          (this.To = T);
+      });
+    }
   },
   updated() {
-    this.emitter.on("toggle-thework", ({ J, C, L, F, T }) => {
-      (this.Jobtitle = J),
-        (this.Company = C),
-        (this.Location = L),
-        (this.From = F),
-        (this.To = T);
-    });
+    for (let index = 0; index < 2; index++) {
+      this.emitter.on("toggle-thework", ({ J, C, L, F, T }) => {
+        (this.Jobtitle[index] = J),
+          (this.Company = C),
+          (this.Location = L),
+          (this.From = F),
+          (this.To = T);
+      });
+
+      console.log(this.Jobtitle[index]);
+    }
   },
 };
 </script>

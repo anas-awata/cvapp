@@ -27,7 +27,6 @@
             :deleteMe="deleteWork"
             @toggle-work="toggleMyWork"
           >
-            <div>{{ work }}</div>
           </component>
         </div>
       </div>
@@ -44,7 +43,7 @@ export default {
     return {
       workhidden: false,
       works: ["workItem"],
-      Jobtitle: "",
+      Jobtitle: [],
       Company: "",
       Location: "",
       From: "",
@@ -59,19 +58,22 @@ export default {
       this.works.splice(index, 1);
     },
     toggleMyWork({ jobtitle, company, location, from, to }) {
-      (this.Jobtitle = jobtitle),
-        (this.Company = company),
-        (this.Location = location),
-        (this.From = from),
-        (this.To = to);
+      for (let index = 0; index < this.works.length; index++) {
+        (this.Jobtitle[index] = jobtitle),
+          (this.Company = company),
+          (this.Location = location),
+          (this.From = from),
+          (this.To = to);
+        console.log(this.Jobtitle[index]);
 
-      this.emitter.emit("toggle-thework", {
-        J: this.Jobtitle,
-        C: this.Company,
-        L: this.Location,
-        F: this.From,
-        T: this.To,
-      });
+        this.emitter.emit("toggle-thework", {
+          J: this.Jobtitle[index],
+          C: this.Company,
+          L: this.Location,
+          F: this.From,
+          T: this.To,
+        });
+      }
     },
   },
 };
